@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Header() {
+function Tab() {
     return (
         <div>
-            <h1>Demo Container</h1>
+            
         </div>
     )
 }
 
-export default Header
+export default Tab
