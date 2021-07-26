@@ -44,7 +44,7 @@ function TabsHeader() {
     }
     return id;
   }
-
+  console.log(tabIndex, state.activeTab)
   return (
     <div className={styles.container}>
       <FaChevronLeft

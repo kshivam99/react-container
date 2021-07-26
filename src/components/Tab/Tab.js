@@ -4,7 +4,7 @@ import styles from "../TabsHeader/TabsHeader.module.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 
-function Modal({ id, setViewModal }) {
+function Modal({ id, setViewModal, setTabIndex }) {
   const { state,dispatch } = useTabs();
 
   function submitHandler(e) {
@@ -13,6 +13,7 @@ function Modal({ id, setViewModal }) {
     if (e.target.name === "btn" && state.tabs.length>1) {
       dispatch({ type: "CLOSE_TAB", payload: id });
       dispatch({type:"UPDATE_ACTIVE_TAB",payload:state.tabs[0].id===id?state.tabs[1].id:state.tabs[0].id})
+      setTabIndex(state.tabs[0].id===id?state.tabs[1].id:state.tabs[0].id)
     }
     else if(state.tabs.length===1){
         setViewModal(false)
