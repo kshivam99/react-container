@@ -4,19 +4,13 @@ import Header from "../components/Header/Header";
 import { useTabs } from "../reducer/tabsReducer";
 
 function Window() {
-  const { state, dispatch } = useTabs();
+    const {state} = useTabs();
   return (
     <div>
+      <Header />
+      <TabsHeader />
       <div>
-        <Header />
-        <TabsHeader />
-        <button
-          onClick={() => {
-            state.tabs.length < 10 && dispatch({ type: "ADD_NEW_TAB" });
-          }}
-        >
-          +
-        </button>
+          <h1 style={{marginTop:"4rem", userSelect:"none"}}>{state.tabs.find(item=>item.id===state.activeTab).content}</h1>
       </div>
     </div>
   );

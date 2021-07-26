@@ -6,7 +6,7 @@ export const tabsReducer = (state, action) => {
     case "ADD_NEW_TAB":
       return {
         ...state,
-        tabs: state.tabs.concat({id:state.total, content:`Tab ${state.total+1} Contents`}),
+        tabs: state.tabs.concat({id:JSON.stringify(state.total), content:`Tab ${state.total+1} Contents`}),
         total: state.total+1
       };
     case "CLOSE_TAB": 
@@ -14,6 +14,16 @@ export const tabsReducer = (state, action) => {
           ...state,
           tabs: state.tabs.filter(item=>item.id!==action.payload)
       }
+    case "UPDATE":
+        return {
+            ...state,
+            tabs: action.payload
+        }
+    case "UPDATE_ACTIVE_TAB":
+        return {
+            ...state,
+            activeTab: action.payload
+        }
     default:
       break;
   }
@@ -25,18 +35,19 @@ const TabsContext = createContext();
 export const TabsProvider = ({ children }) => {
     const [state, dispatch] = useReducer(tabsReducer, 
         {   
+            activeTab:"0",
             total:3,
             tabs: [
                 {
-                    id:0,
+                    id:"0",
                     content:"Tab 1 Contents"
                 },
                 {
-                    id:1,
+                    id:"1",
                     content:"Tab 2 Contents"
                 },
                 {
-                    id:2,
+                    id:"2",
                     content:"Tab 3 Contents"
                 }
             ],
